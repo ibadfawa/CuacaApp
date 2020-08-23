@@ -10,9 +10,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cuacaapp.databinding.ActivityMainBinding
 import com.example.cuacaapp.view.WeatherItemAdapter
+import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
@@ -26,6 +28,13 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.listWeatherRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.listWeatherRecyclerView.adapter = WeatherItemAdapter()
+        lifecycleScope.launch {
+        }
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        binding.viewModel?.asyncAwait(binding.xyz)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

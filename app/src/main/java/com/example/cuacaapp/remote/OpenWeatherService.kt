@@ -11,6 +11,12 @@ interface OpenWeatherService {
         @Query("appid") appid: String
     ): Call<CurrentWeatherResponse>
 
+    @GET("data/2.5/weather")
+    suspend fun listCurrentWeatherSuspend(
+        @Query("q") query: String?,
+        @Query("appid") appid: String
+    ): CurrentWeatherResponse?
+
     @GET("data/2.5/forecast")
     fun listForecastWeather(
         @Query("q") query: String?,

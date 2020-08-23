@@ -22,6 +22,13 @@ object MainRepository {
         return@lazy retrofit.create<OpenWeatherService>(OpenWeatherService::class.java)
     }
 
+    suspend fun getCurrentWeather(query: String): WeatherModel? {
+        return retrofitBuilder.listCurrentWeatherSuspend(query, Config.KEY_API_WEATHER_CUACA_APP)
+            .let {
+                WeatherMapper.fromResponseToModel(it)
+            }
+    }
+
     fun getCurrentWeather(query: String, onSuccess: (WeatherModel?) -> Unit, onError: () -> Unit) {
         val request: Call<CurrentWeatherResponse> =
             retrofitBuilder.listCurrentWeather(query, Config.KEY_API_WEATHER_CUACA_APP)
