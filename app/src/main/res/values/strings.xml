@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Cuaca App</string>
+    <string name="_5_days_forecast">5 Days Forecast Weather</string>
+    <string name="current_weather">Current Weather</string>
+    <string name="temperature">temperature: %s celcius</string>
+    <string name="weather1_weather2">%s: %s</string>
+</resources>
